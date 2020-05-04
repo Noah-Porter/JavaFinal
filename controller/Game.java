@@ -54,7 +54,7 @@ public class Game extends JFrame implements Runnable{
 		setResizable(false);
 		setTitle("3D Engine");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBackground(Color.black);
+		setBackground(Color.GREEN);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		start();

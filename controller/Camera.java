@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 
 public class Camera implements KeyListener{
 	public double xPos, yPos, xDir, yDir, xPlane, yPlane;
-	public boolean left, right, forward, back;
+	public boolean left, right, forward, back, up;
 	public final double MOVE_SPEED = .08;
 	public final double ROTATION_SPEED = .045;
 	public Camera(double x, double y, double xd, double yd, double xp, double yp) {
@@ -26,6 +26,8 @@ public class Camera implements KeyListener{
 			forward = true;
 		if((key.getKeyCode() == KeyEvent.VK_DOWN))
 			back = true;
+    if((key.getKeyCode() == KeyEvent.VK_SPACE))
+      up = true;
 	}
 	public void keyReleased(KeyEvent key) {
 		if((key.getKeyCode() == KeyEvent.VK_LEFT))
@@ -33,11 +35,22 @@ public class Camera implements KeyListener{
 		if((key.getKeyCode() == KeyEvent.VK_RIGHT))
 			right = false;
 		if((key.getKeyCode() == KeyEvent.VK_UP))
-			forward = false;
+			forward = false; 
 		if((key.getKeyCode() == KeyEvent.VK_DOWN))
 			back = false;
+    if((key.getKeyCode() == KeyEvent.VK_SPACE))
+      up = false;
 	}
 	public void update(int[][] map) {
+    if(up) 
+    {
+      if(map[(int)(yPos + yDir * MOVE_SPEED)][(int)xPos] == 0) {
+				yPos+=xDir*MOVE_SPEED;
+			}
+			if(map[(int)yPos][(int)(xPos + xDir * MOVE_SPEED)] ==0)
+				xPos+=xDir*MOVE_SPEED;
+    }
+
 		if(forward) {
 			if(map[(int)(xPos + xDir * MOVE_SPEED)][(int)yPos] == 0) {
 				xPos+=xDir*MOVE_SPEED;

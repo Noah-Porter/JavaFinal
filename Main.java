@@ -1,9 +1,9 @@
-import controller.FinalController;
+import controller.Game;
 
 class Main 
 {
   public static void main(String[] args) 
   {
-    FinalController app = new FinalController();
+    Game app = new Game();
   }
 }
